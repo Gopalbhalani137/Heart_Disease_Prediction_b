@@ -1,13 +1,16 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import pickle
 import pandas as pd
+from joblib import load  # Use joblib instead of pickle
 
 app = Flask(__name__)
-CORS(app) 
-MODEL_PATH = 'model/trained_model.pkl'
-with open(MODEL_PATH, 'rb') as model_file:
-    model = pickle.load(model_file)
+CORS(app)
+
+# Path to the saved model
+MODEL_PATH = 'model/trained_model.joblib'
+
+# Load the model using joblib
+model = load(MODEL_PATH)
 
 @app.route('/')
 def home():
