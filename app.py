@@ -5,8 +5,7 @@ from joblib import load
 import os
 
 app = Flask(__name__)
-CORS(app)
-
+CORS(app, resources={r"/*": {"origins": "https://capable-youtiao-2f285b.netlify.app/"}})
 # Path to the saved model - using os.path for better compatibility
 MODEL_PATH = os.path.join('model', 'trained_model.joblib')
 
